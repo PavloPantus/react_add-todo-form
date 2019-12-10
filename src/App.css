@@ -1,3 +1,63 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.App-table {
+  table-layout: fixed; /* Фиксированная ширина ячеек */
+  width: 800px;
+}
+
+.App-table-head {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.App-table-row:nth-child(odd) {
+  background-color: rgb(238, 240, 223);
+}
+
+.App-table-row:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.completed {
+  background-color: green;
+}
+
+.not-completed {
+  background-color: red;
+}
+
+.new-todo-section {
+  border: 1px solid rgb(134, 134, 81);
+  width: 700px;
+}
+
+.new-todo-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.users-select {
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.input {
+  height: 30px;
+}
+
+.error {
+  margin: 0 auto;
+  width: 200px;
+  display: inline-block;
+  background-color: rgb(221, 176, 176);
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  position: relative;
+  top: -30px;
 }
