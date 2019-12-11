@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import User from './User';
 
 const Todoitem = (props) => {
   const { id, title, completed, user } = props.todo;
@@ -12,12 +11,12 @@ const Todoitem = (props) => {
       <td className={completed ? 'completed' : 'not-completed'}>
         {completed ? 'completed' : 'not completed'}
       </td>
-      <User user={user} />
+      <td>{user.name}</td>
     </tr>
   );
 };
 
-Todoitem.propTypes = { todo: PropTypes.objectOf(PropTypes.any) };
+Todoitem.propTypes = { todo: PropTypes.objectOf(PropTypes.object) };
 
 Todoitem.defaultProps = {
   todo: {

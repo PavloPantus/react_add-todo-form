@@ -9,11 +9,11 @@ import NewTodo from './NewTodo';
 class App extends React.Component {
   state = { todos: [...oldTodos] }
 
-  addTodo = newTask => () => {
+  addTodo = (newTask) => {
     this.setState(
       prev => ({ todos: [...prev.todos, newTask] })
     );
-  }
+  };
 
   render() {
     const { todos } = this.state;

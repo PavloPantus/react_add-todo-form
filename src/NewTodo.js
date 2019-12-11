@@ -7,17 +7,16 @@ class NewTodo extends React.Component {
     currentTitle: '',
   }
 
-  handleChangeinSelect = (event) => {
-    event.persist();
+  handleSelectChange = (event) => {
+    const userId = +event.target.value;
 
-    this.setState(prevState => ({
-      ...prevState,
-      userId: +event.target.value,
-      currentid: +event.target.value,
-    }));
+    this.setState({
+      userId,
+      currentid: userId,
+    });
   }
 
-  handleChangeinInput = (event) => {
+  handleInputChange = (event) => {
     event.persist();
     this.setState(prevState => ({
       ...prevState,
@@ -31,67 +30,32 @@ class NewTodo extends React.Component {
 
     const { currentid, currentTitle } = this.state;
 
-    const checkError = (toCheck,
-      alertAfterSelector,
-      errorClassName,
-      errorMeasge) => {
-      if (toCheck) {
-        const usersSelect = document.querySelector(alertAfterSelector);
-        const emptyfieldError = document.createElement('div');
-
-        emptyfieldError.className = `error ${errorClassName}`;
-        emptyfieldError.innerHTML = `${errorMeasge}`;
-        usersSelect.after(emptyfieldError);
-        const objError = {};
-
-        objError[errorClassName] = true;
-        this.setState(objError);
-      }
-    };
-
-    const checkErrors = () => {
-      checkError(
-        currentid === 0,
-        '.users-select',
-        'errorSelectUser',
-        'Ошибка, выберите пользователя!'
-      );
-      checkError(
-        currentTitle === '',
-        '.input-title',
-        'errorTitleInput',
-        'Ошибка, заполните поле title!'
-      );
-    };
-
     const addButtonClick = () => {
-      checkErrors();
-
       if (
-        this.state.errorSelectUser
-        || this.state.errorTitleInput
+        !currentTitle
         || currentid === 0
       ) {
+        this.setState({
+          errorSelectUser: currentid === 0,
+          errorTitleInput: !currentTitle,
+        });
+
         return;
       }
 
-      addTodo(
-        {
-          userId: currentid,
-          id: todos[todos.length - 1].id + 1,
-          title: currentTitle,
-        }
-      )();
+      addTodo({
+        userId: currentid,
+        id: todos[todos.length - 1].id + 1,
+        title: currentTitle,
+      });
 
-      this.setState(
-        {
-          currentid: 0,
-          currentTitle: '',
-          userId: undefined,
-          id: undefined,
-          title: undefined,
-        }
-      );
+      this.setState({
+        currentid: 0,
+        currentTitle: '',
+        userId: undefined,
+        id: undefined,
+        title: undefined,
+      });
     };
 
     return (
@@ -104,54 +68,46 @@ class NewTodo extends React.Component {
         >
 
           <select
-
             onClick={() => {
-              if (this.state.errorSelectUser) {
-                document.querySelectorAll('.errorSelectUser').forEach(
-                  (elem) => {
-                    elem.remove();
-                  }
-                );
-              }
-
               this.setState({ errorSelectUser: false });
             }}
-
             value={this.state.currentid}
-            onChange={this.handleChangeinSelect}
+            onChange={this.handleSelectChange}
             className="users-select"
           >
             <option value="0">Choose a user</option>
             {
               users.map(user => (
-                <option key={user.id} value={user.id}>{user.name}</option>
+                <option
+                  key={user.id}
+                  value={user.id}
+                >
+                  {user.name}
+                </option>
               ))
             }
           </select>
 
+          {this.state.errorSelectUser
+          && <div className="error">Ошибка, выберите пользователя!</div>}
+
           <input
             onClick={() => {
-              if (this.state.errorTitleInput) {
-                document.querySelectorAll('.errorTitleInput').forEach(
-                  (elem) => {
-                    elem.remove();
-                  }
-                );
-              }
-
               this.setState({ errorTitleInput: false });
             }}
 
             value={currentTitle}
-            onChange={this.handleChangeinInput}
+            onChange={this.handleInputChange}
             type="text"
             placeholder="todo title"
             className="input input-title"
           />
 
+          {this.state.errorTitleInput
+          && <div className="error">Ошибка, введите title</div>}
+
           <button
             onClick={addButtonClick}
-
             className="button_add"
             type="button"
           >
