@@ -1,0 +1,79 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.App-table {
+  table-layout: fixed; /* Фиксированная ширина ячеек */
+  width: 800px;
+}
+
+.App-table-head {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.App-table-row:nth-child(odd) {
+  background-color: rgb(238, 240, 223);
+}
+
+.App-table-row:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.completed {
+  background-color: green;
+}
+
+.not-completed {
+  background-color: red;
+}
+
+.new-todo-section {
+  border: 1px solid rgb(134, 134, 81);
+  width: 400px;
+}
+
+.new-todo-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.users-select {
+  background-color: rgb(223, 250, 204);
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.input {
+  background-color: rgb(223, 250, 204);
+  height: 30px;
+}
+
+.error {
+  margin: 0 auto;
+  width: 200px;
+  display: inline-block;
+  background-color: rgb(221, 176, 176);
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  position: relative;
+  top: -30px;
+}
+
+.button_add {
+  background-color: rgb(223, 250, 204);
+  border: 1px solid;
+  width: 100px;
+  height: 40px;
+  align-self: center;
+  margin-top: 20px;
+  transition: all 2s;
+  &:hover {
+    transform: scale(1.3);
+    cursor: pointer;
+  }
+}
