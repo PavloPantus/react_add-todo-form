@@ -16,7 +16,7 @@ const Todoitem = (props) => {
   );
 };
 
-Todoitem.propTypes = { todo: PropTypes.objectOf(PropTypes.object) };
+Todoitem.propTypes = { todo: PropTypes.objectOf(PropTypes.any) };
 
 Todoitem.defaultProps = {
   todo: {

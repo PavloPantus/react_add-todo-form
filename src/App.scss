@@ -34,7 +34,7 @@
 
 .new-todo-section {
   border: 1px solid rgb(134, 134, 81);
-  width: 700px;
+  width: 400px;
 }
 
 .new-todo-form {
@@ -43,11 +43,13 @@
 }
 
 .users-select {
+  background-color: rgb(223, 250, 204);
   height: 50px;
   margin-bottom: 10px;
 }
 
 .input {
+  background-color: rgb(223, 250, 204);
   height: 30px;
 }
 
@@ -60,4 +62,18 @@
   text-overflow: ellipsis;
   position: relative;
   top: -30px;
+}
+
+.button_add {
+  background-color: rgb(223, 250, 204);
+  border: 1px solid;
+  width: 100px;
+  height: 40px;
+  align-self: center;
+  margin-top: 20px;
+  transition: all 2s;
+  &:hover {
+    transform: scale(1.3);
+    cursor: pointer;
+  }
 }
